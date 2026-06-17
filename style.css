@@ -1,0 +1,399 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+/* MODE GELAP */
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* BAR ATAS */
+.topbar {
+  background: #00a8b5;
+  color: white;
+  padding: 8px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topbar a { 
+  color: white; 
+  text-decoration: none; 
+  margin: 0 8px; 
+}
+
+.topbar .kiri {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar .sosmed {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar .sosmed i { 
+  cursor: pointer; 
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.topbar .sosmed i:hover {
+  transform: scale(1.1);
+}
+
+#tombolTema {
+  background: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#tombolTema:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* HEADER */
+.header {
+  background: white;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  transition: background 0.3s ease;
+}
+
+body.dark .header { 
+  background: #1e1e1e; 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.logo-box {
+  background: #00a8b5;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+}
+
+.logo span { 
+  color: #00a8b5; 
+}
+
+.ads {
+  background: #222;
+  color: white;
+  padding: 15px 20px;
+  max-width: 728px;
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.ads b { font-size: 20px; }
+.ads small { color: #ccc; }
+.ads span {
+  background: #00a8b5;
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 3px;
+}
+
+/* NAVIGASI MENU */
+nav {
+  background: #00a8b5;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+nav a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* KONTEN UTAMA + SIDEBAR */
+.wadah-konten {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 30px;
+  padding: 30px 5%;
+}
+
+.kolom-berita h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #00a8b5;
+}
+
+.berita-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark .berita-item {
+  background: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.gambar-berita {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background-color: #eee;
+}
+
+.berita-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #00a8b5;
+}
+
+.berita-item .tanggal {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+body.dark .berita-item .tanggal {
+  color: #999;
+}
+
+.berita-ringkas {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+body.dark .berita-ringkas {
+  color: #ccc;
+}
+
+.berita-lengkap {
+  font-size: 14px;
+  color: #555;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #eee;
+  display: none;
+}
+
+body.dark .berita-lengkap {
+  color: #ccc;
+  border-top-color: #333;
+}
+
+.tombol-baca {
+  background: #00a8b5;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tombol-baca:hover {
+  background: #008994;
+}
+
+/* Sidebar */
+.sidebar h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #00a8b5;
+}
+
+.sidebar .box {
+  background: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s ease;
+}
+
+body.dark .sidebar .box {
+  background: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 9px 0;
+  border-bottom: 1px solid #eee;
+}
+
+body.dark .sidebar ul li {
+  border-bottom-color: #333;
+}
+
+.sidebar ul li a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+body.dark .sidebar ul li a {
+  color: #ddd;
+}
+
+.sidebar ul li a:hover {
+  color: #00a8b5;
+}
+
+/* FOOTER */
+.footer {
+  background: #00a8b5;
+  color: white;
+  text-align: center;
+  padding: 20px 5%;
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+body.dark .footer {
+  background: #007a85;
+}
+
+/* NOTIFIKASI POP UP */
+.notif-popup {
+  position: fixed;
+  bottom: 30px;
+  left: -350px;
+  background: #ffffff;
+  border-left: 5px solid #00a8b5;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 320px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  transition: left 0.5s ease, background 0.3s ease;
+}
+
+body.dark .notif-popup {
+  background: #1e1e1e;
+  border-color: #00a8b5;
+  color: #eee;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.notif-popup.show {
+  left: 20px;
+}
+
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  background: #00a8b5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.notif-content h4 {
+  font-size: 14px;
+  margin-bottom: 3px;
+  color: #333;
+}
+
+body.dark .notif-content h4 {
+  color: #eee;
+}
+
+.notif-content p {
+  font-size: 12px;
+  color: #666;
+}
+
+body.dark .notif-content p {
+  color: #bbb;
+}
+
+/* Responsif HP */
+@media(max-width: 768px) {
+  .wadah-konten {
+    grid-template-columns: 1fr;
+  }
+  .ads {
+    text-align: center;
+    justify-content: center;
+  }
+  .gambar-berita {
+    height: 160px;
+  }
+  }
+  
