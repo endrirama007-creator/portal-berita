@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEWS PORTAL - Berita Terupdate</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+/* ✅ MODE GELAP */
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* ================================== */
+/* ✅ BAR ATAS DENGAN TOMBOL DARK MODE */
+/* ================================== */
+.topbar {
+  background: #00a8b5;
+  color: white;
+  padding: 8px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topbar a { 
+  color: white; 
+  text-decoration: none; 
+  margin: 0 8px; 
+}
+
+.topbar .kiri {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar .sosmed {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar .sosmed i { 
+  cursor: pointer; 
+  font-size: 15px;
+  transition: transform 0.2s;
+}
+
+.topbar .sosmed i:hover {
+  transform: scale(1.1);
+}
+
+/* ✅ GAYA KHUSUS TOMBOL DARK MODE */
+#tombolTema {
+  background: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#tombolTema:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ================================== */
+/* HEADER */
+/* ================================== */
+.header {
+  background: white;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  transition: background 0.3s ease;
+}
+
+body.dark .header { 
+  background: #1e1e1e; 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.logo-box {
+  background: #00a8b5;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+}
+
+.logo span { 
+  color: #00a8b5; 
+}
+
+.ads {
+  background: #222;
+  color: white;
+  padding: 15px 20px;
+  max-width: 728px;
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.ads b { font-size: 20px; }
+.ads small { color: #ccc; }
+.ads span {
+  background: #00a8b5;
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 3px;
+}
+
+/* ================================== */
+/* NAVIGASI MENU */
+/* ================================== */
+nav {
+  background: #00a8b5;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+nav a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ================================== */
+/* KONTEN UTAMA + SIDEBAR */
+/* ================================== */
+.wadah-konten {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 30px;
+  padding: 30px 5%;
+}
+
+/* Kolom Berita Tengah */
+.kolom-berita h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #00a8b5;
+}
+
+/* ✅ GAYA BERITA DENGAN GAMBAR */
+.berita-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark .berita-item {
+  background: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ✅ GAMBAR BERITA SUDAH SESUAI TOPIK */
+.gambar-berita {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background-color: #eee;
+}
+
+.berita-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #00a8b5;
+}
+
+.berita-item .tanggal {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+body.dark .berita-item .tanggal {
+  color: #999;
+}
+
+/* ✅ READ MORE */
+.berita-ringkas {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+body.dark .berita-ringkas {
+  color: #ccc;
+}
+
+.berita-lengkap {
+  font-size: 14px;
+  color: #555;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #eee;
+  display: none;
+}
+
+body.dark .berita-lengkap {
+  color: #ccc;
+  border-top-color: #333;
+}
+
+.tombol-baca {
+  background: #00a8b5;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tombol-baca:hover {
+  background: #008994;
+}
+
+/* Sidebar Kanan */
+.sidebar h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #00a8b5;
+}
+
+.sidebar .box {
+  background: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s ease;
+}
+
+body.dark .sidebar .box {
+  background: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 9px 0;
+  border-bottom: 1px solid #eee;
+}
+
+body.dark .sidebar ul li {
+  border-bottom-color: #333;
+}
+
+.sidebar ul li a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+body.dark .sidebar ul li a {
+  color: #ddd;
+}
+
+.sidebar ul li a:hover {
+  color: #00a8b5;
+}
+
+/* ================================== */
+/* ✅ FOOTER / HAK CIPTA */
+/* ================================== */
+.footer {
+  background: #00a8b5;
+  color: white;
+  text-align: center;
+  padding: 20px 5%;
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+body.dark .footer {
+  background: #007a85;
+}
+
+/* ================================== */
+/* NOTIFIKASI POP UP */
+/* ================================== */
+.notif-popup {
+  position: fixed;
+  bottom: 30px;
+  left: -350px;
+  background: #ffffff;
+  border-left: 5px solid #00a8b5;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 320px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  transition: left 0.5s ease, background 0.3s ease;
+}
+
+body.dark .notif-popup {
+  background: #1e1e1e;
+  border-color: #00a8b5;
+  color: #eee;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.notif-popup.show {
+  left: 20px;
+}
+
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  background: #00a8b5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.notif-content h4 {
+  font-size: 14px;
+  margin-bottom: 3px;
+  color: #333;
+}
+
+body.dark .notif-content h4 {
+  color: #eee;
+}
+
+.notif-content p {
+  font-size: 12px;
+  color: #666;
+}
+
+body.dark .notif-content p {
+  color: #bbb;
+}
+
+/* Responsif untuk HP */
+@media(max-width: 768px) {
+  .wadah-konten {
+    grid-template-columns: 1fr;
+  }
+  .ads {
+    text-align: center;
+    justify-content: center;
+  }
+  .gambar-berita {
+    height: 160px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ✅ TOP BAR DENGAN TOMBOL DARK MODE DI ATAS -->
+<div class="topbar">
+  <div class="kiri">
+    <a href="#"><i class="fa fa-clock-o"></i> Rabu, 17 Juni 2026</a>
+    <a href="#"><i class="fa fa-envelope-o"></i> ndry.redaksi@newsportal.id</a>
+  </div>
+  <div class="sosmed">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i>
+    <i class="fa fa-youtube-play"></i>
+    <!-- ✅ TOMBOL DARK MODE SUDAH DI ATAS -->
+    <i id="tombolTema" class="fa fa-moon-o" title="Ubah ke Mode Gelap/Terang"></i>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="logo">
+    <div class="logo-box">N</div>
+    NEWS<span>PORTAL</span>
+  </div>
+  <div class="ads">
+    <div>
+      <b>IKLAN BANNER 728x90</b><br>
+      <small>Pasang iklan di situs kami, jangkauan luas!</small>
+    </div>
+    <span>PASANG SEKARANG</span>
+  </div>
+</div>
+
+<!-- Navigasi -->
+<nav>
+  <a href="#beranda">Beranda</a>
+  <a href="#nasional">Nasional</a>
+  <a href="#daerah">Daerah</a>
+  <a href="#ekonomi">Ekonomi</a>
+  <a href="#olahraga">Olahraga</a>
+  <a href="#teknologi">Teknologi</a>
+  <a href="#hiburan">Hiburan</a>
+</nav>
+
+<!-- KONTEN UTAMA -->
+<div class="wadah-konten">
+  <!-- Kolom Berita Tengah -->
+  <div class="kolom-berita">
+
+    <!-- ✅ BERANDA -->
+    <section id="beranda">
+      <h2>Berita Terkini</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/1060/800/400" alt="Berita Utama" class="gambar-berita">
+        <h3>Pemerintah Fokuskan Pembangunan Infrastruktur di Seluruh Wilayah</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 17 Juni 2026 | Umum</div>
+        <p class="berita-ringkas">Pembangunan jalan, jembatan, dan fasilitas umum dipercepat untuk mendukung konektivitas antar daerah dan mendorong pertumbuhan ekonomi...</p>
+        <div class="berita-lengkap">
+          Dalam rapat kerja nasional, pemerintah menegaskan komitmennya untuk menyelesaikan berbagai proyek strategis yang telah direncanakan. Dana yang dialokasikan mencapai ratusan triliun rupiah dengan pengawasan ketat agar penggunaannya tepat sasaran. Langkah ini diharapkan dapat membuka akses ke daerah terpencil dan meningkatkan kesejahteraan masyarakat luas.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+    <!-- ✅ NASIONAL -->
+    <section id="nasional">
+      <h2>Nasional</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/1070/800/400" alt="Berita Nasional" class="gambar-berita">
+        <h3>Kebijakan Baru Pemerintah untuk Kesejahteraan Rakyat</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 17 Juni 2026 | Nasional</div>
+        <p class="berita-ringkas">Pemerintah meluncurkan program bantuan sosial dan peningkatan layanan kesehatan serta pendidikan untuk seluruh lapisan masyarakat...</p>
+        <div class="berita-lengkap">
+          Program ini mencakup bantuan langsung tunai, pembangunan puskesmas dan sekolah baru, serta peningkatan kualitas tenaga pendidik dan tenaga medis. Menteri Sosial menyatakan bahwa program ini akan diawasi secara ketat agar tepat sasaran dan memberikan manfaat nyata bagi masyarakat Indonesia.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+    <!-- ✅ DAERAH -->
+    <section id="daerah">
+      <h2>Daerah</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/1084/800/400" alt="Berita Daerah" class="gambar-berita">
+        <h3>Surabaya Kembangkan Wisata Bahari untuk Dorong Ekonomi Lokal</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 16 Juni 2026 | Daerah</div>
+        <p class="berita-ringkas">Pemerintah Kota Surabaya berbenah kawasan pesisir dan pantai agar lebih menarik wisatawan, sekaligus memberdayakan masyarakat sekitar...</p>
+        <div class="berita-lengkap">
+          Berbagai fasilitas penunjang seperti tempat parkir, tempat istirahat, dan pusat oleh-oleh mulai dibangun. Selain itu, pelatihan kewirausahaan juga diberikan kepada warga agar bisa membuka usaha di sekitar lokasi wisata. Diharapkan kunjungan wisata meningkat dan pendapatan masyarakat ikut bertambah.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+    <!-- ✅ EKONOMI -->
+    <section id="ekonomi">
+      <h2>Ekonomi</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/1078/800/400" alt="Berita Ekonomi" class="gambar-berita">
+        <h3>UMKM Indonesia Makin Dikenal di Pasar Internasional</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 16 Juni 2026 | Ekonomi</div>
+        <p class="berita-ringkas">Produk kerajinan tangan, makanan olahan, dan tekstil karya pelaku UMKM mulai banyak diminati oleh pembeli dari luar negeri...</p>
+        <div class="berita-lengkap">
+          Melalui pameran dagang dan platform digital, akses pasar global semakin terbuka lebar. Pemerintah juga memberikan kemudahan perizinan dan pendampingan agar produk lokal memenuhi standar internasional. Hal ini menjadi peluang besar untuk meningkatkan nilai ekspor dan menciptakan lapangan kerja baru.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+    <!-- ✅ OLAHRAGA -->
+    <section id="olahraga">
+      <h2>Olahraga</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/1072/800/400" alt="Berita Olahraga" class="gambar-berita">
+        <h3>Timnas Indonesia Persiapkan Diri Hadapi Turnamen Asia</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 15 Juni 2026 | Olahraga</div>
+        <p class="berita-ringkas">Skuad nasional menggelar pemusatan latihan untuk meningkatkan fisik dan strategi permainan sebelum menghadapi tim-tim kuat se-Asia...</p>
+        <div class="berita-lengkap">
+          Pelatih kepala menyatakan bahwa seluruh pemain dalam kondisi prima dan siap memberikan performa terbaik. Dukungan dari suporter juga menjadi semangat tambahan bagi tim untuk meraih hasil yang membanggakan dan mengharumkan nama Indonesia di kancah olahraga internasional.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+    <!-- ✅ TEKNOLOGI -->
+    <section id="teknologi">
+      <h2>Teknologi</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/0/800/400" alt="Berita Teknologi" class="gambar-berita">
+        <h3>Penggunaan Kecerdasan Buatan Semakin Meluas di Berbagai Bidang</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 15 Juni 2026 | Teknologi</div>
+        <p class="berita-ringkas">Teknologi AI mulai diterapkan dalam dunia usaha, pendidikan, kesehatan, hingga pelayanan publik untuk mempermudah pekerjaan sehari-hari...</p>
+        <div class="berita-lengkap">
+          Dengan dukungan infrastruktur digital yang terus diperbaiki, akses terhadap teknologi ini semakin terbuka bagi masyarakat. Pemerintah juga menyusun aturan agar pemanfaatan teknologi berjalan aman, bertanggung jawab, dan tidak merugikan kepentingan umum serta melindungi data pribadi pengguna.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+    <!-- ✅ HIBURAN -->
+    <section id="hiburan">
+      <h2>Hiburan</h2>
+      <div class="berita-item">
+        <img src="https://picsum.photos/id/1082/800/400" alt="Berita Hiburan" class="gambar-berita">
+        <h3>Film Karya Sineas Lokal Raih Penghargaan di Festival Internasional</h3>
+        <div class="tanggal"><i class="fa fa-calendar"></i> 14 Juni 2026 | Hiburan</div>
+        <p class="berita-ringkas">Karya film yang mengangkat kisah budaya dan kehidupan masyarakat Indonesia mendapatkan apresiasi tinggi dari juri dan penonton luar negeri...</p>
+        <div class="berita-lengkap">
+          Keberhasilan ini menjadi bukti bahwa industri kreatif tanah air memiliki kualitas yang tak kalah dengan negara lain. Semakin banyak karya anak bangsa yang diperkenalkan ke dunia internasional, sehingga semakin memperkenalkan kekayaan budaya Indonesia ke mata dunia.
+        </div>
+        <button class="tombol-baca">Baca Selengkapnya</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Sidebar Kanan -->
+  <div class="sidebar">
+    <div class="box">
+      <h3>Berita Populer</h3>
+      <ul>
+        <li><a href="#nasional">Kebijakan baru untuk kesejahteraan rakyat</a></li>
+        <li><a href="#ekonomi">UMKM lokal tembus pasar dunia</a></li>
+        <li><a href="#olahraga">Persiapan timnas hadapi turnamen</a></li>
+        <li><a href="#teknologi">Manfaat AI dalam kehidupan sehari-hari</a></li>
+        <li><a href="#hiburan">Film Indonesia raih penghargaan</a></li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h3>Kategori</h3>
+      <ul>
+        <li><a href="#nasional">Nasional</a></li>
+        <li><a href="#daerah">Daerah</a></li>
+        <li><a href="#ekonomi">Ekonomi & Bisnis</a></li>
+        <li><a href="#olahraga">Olahraga</a></li>
+        <li><a href="#teknologi">Teknologi</a></li>
+        <li><a href="#hiburan">Hiburan</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ BAGIAN HAK CIPTA -->
+<div class="footer">
+  &copy; 2026 @ndry.portal.berita indonesia<br>
+  dibuat untuk berbagi informasi aktual dan terpercaya
+</div>
+
+<!-- Notifikasi Popup -->
+<div id="kotakNotif" class="notif-popup">
+  <div class="notif-icon"><i class="fa fa-bell"></i></div>
+  <div class="notif-content">
+    <h4 id="judulNotif">Berita Terbaru</h4>
+    <p id="isiNotif">Update berita terkini langsung dari lapangan.</p>
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+// ✅ FUNGSI TOMBOL BACA SELENGKAPNYA
+const tombolBaca = document.querySelectorAll('.tombol-baca');
+tombolBaca.forEach(tombol => {
+  tombol.addEventListener('click', function() {
+    const isiLengkap = this.previousElementSibling;
+    if (isiLengkap.style.display === 'block') {
+      isiLengkap.style.display = 'none';
+      this.textContent = 'Baca Selengkapnya';
+    } else {
+      isiLengkap.style.display = 'block';
+      this.textContent = 'Tutup';
+    }
+  });
+});
+
+// ✅ FUNGSI DARK MODE
+const tombolTema = document.getElementById('tombolTema');
+if(localStorage.getItem('tema') === 'gelap') {
+  document.body.classList.add('dark');
+  tombolTema.classList.remove('fa-moon-o');
+  tombolTema.classList.add('fa-sun-o');
+}
+
+tombolTema.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  if(document.body.classList.contains('dark')) {
+    tombolTema.classList.remove('fa-moon-o');
+    tombolTema.classList.add('fa-sun-o');
+    localStorage.setItem('tema', 'gelap');
+  } else {
+    tombolTema.classList.remove('fa-sun-o');
+    tombolTema.classList.add('fa-moon-o');
+    localStorage.setItem('tema', 'terang');
+  }
+});
+
+// ✅ NOTIFIKASI BERGANTI
+const daftarNotif = [
+  { judul: "📢 Berita Utama", isi: "Pemerintah umumkan program bantuan sosial baru." },
+  { judul: "⚡ Teknologi", isi: "AI mulai diterapkan dalam pelayanan publik." },
+  { judul: "🏃 Olahraga", isi: "Timnas Indonesia bersiap hadapi turnamen Asia." },
+  { judul: "💡 Ekonomi", isi: "UMKM lokal makin dikenal di pasar internasional." },
+  { judul: "🎬 Hiburan", isi: "Film Indonesia raih penghargaan di luar negeri." }
+];
+
+const kotakNotif = document.getElementById('kotakNotif');
+const judulNotif = document.getElementById('judulNotif');
+const isiNotif = document.getElementById('isiNotif');
+let urutan = 0;
+
+function tampilkanNotif() {
+  const data = daftarNotif[urutan];
+  judulNotif.textContent = data.judul;
+  isiNotif.textContent = data.isi;
+
+  kotakNotif.classList.add('show');
+  setTimeout(() => kotakNotif.classList.remove('show'), 4000);
+  urutan = (urutan + 1) % daftarNotif.length;
+}
+
+setTimeout(tampilkanNotif, 1500);
+setInterval(tampilkanNotif, 5000);
+</script>
+
+</body>
+</html>
